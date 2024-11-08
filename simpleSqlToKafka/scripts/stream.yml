@@ -1,0 +1,22 @@
+input:
+  label: "sql_input"
+  sql_select:
+    driver: postgres
+    dsn: postgres://benthos_user:password@localhost:5432/benthos_db?sslmode=disable
+    table: users
+    columns: [ '*' ]
+
+### https://docs.redpanda.com/redpanda-connect/components/outputs/kafka_franz/
+# Common config fields, showing default values
+output:
+  label: "kafka_franz"
+  kafka_franz:
+    seed_brokers: [0.0.0.0:29092] # No default (required)
+    topic: "BENTHOS.POC.TOPIC" # No default (required)
+    key: "" # No default (optional)
+    max_in_flight: 10
+    batching:
+      count: 0
+      byte_size: 0
+      period: ""
+      check: ""
